@@ -27,9 +27,10 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 private slots:
     void on_lblLink_linkActivated(const QString &link);
-    void on_checkBox_clicked();
-    void on_checkBox_2_clicked();
-    void on_comboBox_currentIndexChanged(int index);
+    void on_check_isShowUpoint_clicked();
+    void on_check_isShowCtrlPoint_clicked();
+    void on_com_degree_currentIndexChanged(int index);
+    void on_btnClear_clicked();
 };
 
 #endif // MAINWINDOW_H

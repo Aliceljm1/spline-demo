@@ -20,12 +20,13 @@ void Palette::mousePressEvent(QMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton)
     {
+        qDebug("输出日志：mousePressEvent");
         setCursor(QCursor(Qt::ClosedHandCursor));
 
         int i = getCurrentNode(event->pos());
         if(i >= 0)
         {
-            currentNode = i;
+            currentNode = i;//连续两个点的距离低于阈值返回
             return;
         }
 
@@ -36,6 +37,7 @@ void Palette::mousePressEvent(QMouseEvent* event)
     }
 }
 
+//移动点坐标
 void Palette::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->buttons() & Qt::LeftButton)
@@ -59,6 +61,7 @@ void Palette::mouseMoveEvent(QMouseEvent *event)
 
 void Palette::mouseReleaseEvent(QMouseEvent *event)
 {
+    qDebug("mouseReleaseEvent");
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
@@ -73,9 +76,9 @@ void Palette::generateCurve()
         {
             QPointF t = ctrlPoints[i];
 
-            t*=N(currentK,i,u);
+            t*=N(currentK,i,u);//符合公式
 
-            tmp+=t;
+            tmp+=t;//累加，某点受到前后n个点的影响
         }
         curvePoints.push_back(tmp);
     }

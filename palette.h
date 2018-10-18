@@ -22,7 +22,7 @@ public:
 
     bool showCtrlNode;
     bool showCurveNode;
-    int currentK;
+    int currentK;//当前曲线次数，1，2，3
 
     QVector<QPointF> ctrlPoints;  // 控制点
     QVector<QPointF> curvePoints; // 曲线上的点

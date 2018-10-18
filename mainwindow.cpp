@@ -29,21 +29,21 @@ void MainWindow::on_lblLink_linkActivated(const QString &link)
     QDesktopServices::openUrl(QUrl(link));
 }
 
-void MainWindow::on_checkBox_clicked()
+void MainWindow::on_check_isShowCtrlPoint_clicked()
 {
-    palette->showCtrlNode = ui->checkBox->isChecked();
+    palette->showCtrlNode = ui->check_isShowCtrlPoint->isChecked();
     palette->update();
 }
 
-void MainWindow::on_checkBox_2_clicked()
+void MainWindow::on_check_isShowUpoint_clicked()
 {
-    palette->showCurveNode = ui->checkBox_2->isChecked();
+    palette->showCurveNode = ui->check_isShowUpoint->isChecked();
     palette->update();
 }
 
-void MainWindow::on_comboBox_currentIndexChanged(int index)
+void MainWindow::on_com_degree_currentIndexChanged(int index)
 {
-    ui->lblInfo->setText(QString("次（即%1阶）").arg(index+2));
+    ui->lblInfo->setText(QString("Leval%1").arg(index+2));
     palette->currentK = index+1;
 
     palette->generateCurve();
@@ -62,6 +62,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         break;
     }
 
+    palette->generateCurve();
+    palette->update();
+}
+
+void MainWindow::on_btnClear_clicked()
+{
+    palette->ctrlPoints.clear();
     palette->generateCurve();
     palette->update();
 }
